@@ -10,3 +10,15 @@ before_install:
 script:
   - docker run -it devtriskel/docker-angular ng test --watch=false
   - docker run -it devtriskel/docker-angular ng e2e --port 4202
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-angular"
+  env: "DockerAngular-env"
+  bucket_name: "elasticbeanstalk-us-east-1-947125405129"
+  bucket_path: "docker-angular"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
