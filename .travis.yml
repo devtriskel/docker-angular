@@ -8,4 +8,5 @@ before_install:
   - docker build -t devtriskel/docker-angular -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true devtriskel/docker-angular npm run test
+  - docker run -it devtriskel/docker-angular ng test --watch=false
+  - docker run -it devtriskel/docker-angular ng e2e --port 4202
